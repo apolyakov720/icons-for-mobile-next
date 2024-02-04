@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { GearIcon, LaptopIcon, ReaderIcon } from "@radix-ui/react-icons";
 import { Sidebar, SidebarItem } from "@/components/app/sidebar";
 
@@ -22,7 +21,7 @@ const Wrapper = async ({ children }) => {
             </SidebarItem>
           </Sidebar>
           <div className="row-start-2 border-t lg:row-start-1 lg:col-span-4 lg:col-start-2 lg:border-l lg:border-t-0">
-            <div className="h-full pt-3 pb-5 px-4">{children}</div>
+            <div className="h-full py-3 px-4">{children}</div>
           </div>
         </div>
       </section>

@@ -9,13 +9,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 
-const NewConfigForm = () => {
+const ControlCreate = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline" disabled>
+        <Button variant="outline">
+          <PlusCircledIcon className="mr-2" />
           Create configuration
         </Button>
       </AlertDialogTrigger>
@@ -36,4 +38,4 @@ const NewConfigForm = () => {
   );
 };
 
-export { NewConfigForm };
+export { ControlCreate };

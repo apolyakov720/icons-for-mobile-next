@@ -1,10 +1,11 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
 const Empty = ({ className, ...props }) => (
   <div
-    className={cn("flex flex-col p-5 items-center space-y-1", className)}
+    className={cn(
+      "flex flex-col p-5 items-center space-y-1 text-center",
+      className
+    )}
     {...props}
   />
 );

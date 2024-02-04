@@ -15,7 +15,10 @@ const Controls = ({ className, ...props }) => {
 const ControlsImportant = ({ className, ...props }) => {
   return (
     <div
-      className={cn("flex flex-col gap-2 md:flex-row md:mr-auto", className)}
+      className={cn(
+        "flex flex-col gap-2 md:flex-row md:mr-auto order-1 md:-order-1",
+        className
+      )}
       {...props}
     />
   );

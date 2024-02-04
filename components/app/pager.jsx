@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useLanguage } from "@/components/app/language-provider";
 import {
@@ -11,33 +10,32 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 
-const Pager = ({ onChange, quantity = 0, size = 5 }) => {
+const Pager = ({ onChange, quantity = 0, size = 5, selected = 1 }) => {
   const { translate } = useLanguage();
-  const [selected, setSelected] = useState(1);
 
   const count = Math.ceil(quantity / size);
   const isAvaliable = count > 1;
 
-  useEffect(() => {
-    onChange?.(selected);
-  }, [onChange, selected]);
+  const next = (event) => {
+    event.preventDefault();
 
-  const next = () => {
     if (selected < count) {
-      setSelected(selected + 1);
+      onChange?.(selected + 1);
     }
   };
 
-  const prev = () => {
+  const prev = (event) => {
+    event.preventDefault();
+
     if (selected > 1) {
-      setSelected(selected - 1);
+      onChange?.(selected - 1);
     }
   };
 
   const handleChangeSelected = (nextSelected) => (event) => {
     event.preventDefault();
 
-    setSelected(nextSelected);
+    onChange?.(nextSelected);
   };
 
   const getSchema = () =>

@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
 const Glimpse = ({ className, caption, ...props }) => (
@@ -16,7 +14,7 @@ const Glimpse = ({ className, caption, ...props }) => (
 
 const GlimpseCaption = ({ className, ...props }) => (
   <div
-    className={cn("p-2 text-center font-normal truncate", className)}
+    className={cn("flex justify-center p-2 text-center font-normal", className)}
     {...props}
   />
 );

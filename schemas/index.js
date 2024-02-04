@@ -17,4 +17,11 @@ const SettingsSchema = zod.object({
   theme: zod.string(),
 });
 
-export { ImageSchema, SettingsSchema };
+const FileSchema = zod.object({
+  name: zod
+    .string()
+    .min(1, "Имя файла должно состоять как минимум из 1-го символа")
+    .max(50, "Имя файла должно состоять максимум из 50-ти символов"),
+});
+
+export { ImageSchema, SettingsSchema, FileSchema };

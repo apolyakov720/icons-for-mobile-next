@@ -8,7 +8,20 @@ const Providers = ({ children }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="light">
       <LanguageProvider defaultValue="ru">
-        <AppStateProvider>{children}</AppStateProvider>
+        <AppStateProvider
+          defaultValues={{
+            images: {
+              selected: null,
+              list: [],
+            },
+            configs: {
+              selected: null,
+              list: [],
+            },
+          }}
+        >
+          {children}
+        </AppStateProvider>
       </LanguageProvider>
     </ThemeProvider>
   );

@@ -5,13 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "next-themes";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { useLanguage } from "@/components/app/language-provider";
-import { Glimpse, GlimpseCaption } from "@/components/app/glimpse";
+import { Glimpse, GlimpseCaption } from "@/components/ui/glimpse";
 import {
   Section,
   SectionTitle,
   SectionDescription,
   SectionContent,
-} from "@/components/app/section";
+} from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {

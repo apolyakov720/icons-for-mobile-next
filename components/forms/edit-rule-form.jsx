@@ -1,0 +1,3 @@
+const EditRuleForm = () => {};
+
+export { EditRuleForm };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RocketIcon } from "@radix-ui/react-icons";
-import { Empty, EmptyDescription, EmptyTitle } from "@/components/app/empty";
+import { Empty, EmptyDescription, EmptyTitle } from "@/components/ui/empty";
 
 const NotFound404Page = () => {
   return (
