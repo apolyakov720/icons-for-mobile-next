@@ -7,12 +7,19 @@ import { Loader } from "@/components/ui/loader";
 
 const Configs = ({ getConfigs }) => {
   const [isPending, startTransition] = useTransition();
+  const { setValues } = useAppState();
 
   useEffect(() => {
     startTransition(() => {
-      getConfigs().then((response) => console.log("resp: ", response));
+      getConfigs().then(({ result, list }) => {
+        if (result) {
+          setValues({ configs: { list } });
+        } else {
+          toast.warning("Failed to download the configs from the server");
+        }
+      });
     });
-  }, [getConfigs]);
+  }, [setValues, getConfigs]);
 
   if (isPending) {
     return <Loader />;

@@ -20,7 +20,7 @@ const api = new Api({
   },
 });
 
-const getResources = async (path, type, options) => {
+const getResources = async (path, fileType, options) => {
   try {
     const { _embedded, error } = await api.get(API_ENDPOINT_RESOURCES, {
       query: {
@@ -40,7 +40,7 @@ const getResources = async (path, type, options) => {
       result: true,
       list:
         _embedded?.items.reduce((acc, { media_type, ...rest }) => {
-          if (media_type === type) {
+          if (media_type === fileType) {
             acc.push(rest);
           }
 
@@ -55,10 +55,25 @@ const getResources = async (path, type, options) => {
 const getImages = () => getResources(API_PATH_IMAGES, "image");
 
 const getConfigs = async () => {
-  // TODO
   const response = await getResources(API_PATH_CONFIGS, "text");
 
-  return response;
+  if (response.result) {
+    try {
+      const list = await Promise.all(
+        response.list.map(({ name, file }) =>
+          fetch(file)
+            .then(async (value) => await value.json())
+            .then((result) => ({ name, list: result }))
+        )
+      );
+
+      return { result: true, list };
+    } catch {
+      return { result: false };
+    }
+  } else {
+    return response;
+  }
 };
 
 const renameFile = async (path, values) => {
@@ -106,7 +121,7 @@ const removeFile = async (path) => {
   }
 };
 
-const uploadFile = async (file, fileName, type = "images") => {
+const uploadFile = async (fileUrl, fileName, type = "images") => {
   try {
     const path = type === "images" ? API_PATH_IMAGES : API_PATH_CONFIGS;
     const toPath = `${path}/${fileName}`;
@@ -118,14 +133,14 @@ const uploadFile = async (file, fileName, type = "images") => {
       },
     });
 
-    const blob = await fetch(file).then((response) => response.blob());
+    const fileBlob = await fetch(fileUrl).then((response) => response.blob());
 
     await fetch(href, {
       method: "PUT",
       headers: {
         "Content-Type": "application/octet-stream",
       },
-      body: blob,
+      body: fileBlob,
     });
 
     return { result: true, toPath };

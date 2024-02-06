@@ -19,21 +19,27 @@ const ControlSelect = () => {
     setValues,
   } = useAppState();
 
+  const names = list.map(({ name }) => name);
+
+  const onValueChange = (selected) => {
+    setValues({ configs: { selected } });
+  };
+
   return (
-    <Select>
+    <Select onValueChange={onValueChange}>
       <SelectTrigger className="w-auto grow">
         <SelectValue placeholder="Select your configuration" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {list.length === 0 && (
+          {names.length === 0 && (
             <SelectLabel className="font-normal">
               The list of configurations is empty
             </SelectLabel>
           )}
-          {list.map(({ name, path }) => {
+          {names.map((name) => {
             return (
-              <SelectItem key={path} value={path}>
+              <SelectItem key={name} value={name}>
                 {name}
               </SelectItem>
             );

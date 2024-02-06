@@ -33,8 +33,8 @@ const Images = ({ getImages, pageSize = 5 }) => {
     });
   }, [setValues, getImages]);
 
-  const onValueChange = (image) => {
-    setValues({ images: { selected: image } });
+  const onValueChange = (selected) => {
+    setValues({ images: { selected } });
   };
 
   if (isPending) {
